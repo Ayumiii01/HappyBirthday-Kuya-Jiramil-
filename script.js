@@ -130,7 +130,7 @@ btn.addEventListener("click", () => {
   clicks++;
   if (clicks <= CLICKS_TO_UNLOCK) counter.textContent = Math.min(clicks, CLICKS_TO_UNLOCK) + "/" + CLICKS_TO_UNLOCK;
   if (clicks === CLICKS_TO_UNLOCK) {
-    document.getElementById("hint").innerHTML = "Mwehehehehe HAPPY BIRTHDAY KUYA JAMEL!i🥳🎂";
+    document.getElementById("hint").innerHTML = "Mwehehehehe HAPPY BIRTHDAY KUYA JAMEL!i🥳🎂 (MAX VOLUME)";
     prize.classList.add("pop");
     floatUp(["🎈", "💖", "🎉", "🎂"], 17);
   }
