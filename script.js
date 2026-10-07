@@ -163,7 +163,7 @@ function startSong() {
   NOTES.forEach(([f, b]) => {
     const o = ctx.createOscillator(), g = ctx.createGain();
     o.type = "triangle"; o.frequency.value = f;
-    g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(.1, t + .02);
+    g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(1, t + .02);
     g.gain.exponentialRampToValueAtTime(.001, t + b * beat);
     o.connect(g).connect(ctx.destination); o.start(t); o.stop(t + b * beat);
     t += b * beat;
