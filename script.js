@@ -8,7 +8,8 @@ const images = [
   "imgs/a94e8745-bf19-491a-94e3-4ce9eac31260.jpg",
   "imgs/b4d65230-5754-4667-a10a-8d60c0b7f1d2.jpg",
 ];
-const VOICE_URL = "";         
+const VOICE_URL = "";      
+const CLICK_SOUND = "";     
 const CLICKS_TO_UNLOCK = 8;    
 
 
@@ -115,9 +116,17 @@ function showRandomPicture() {
   replay(pic, "show");
 }
 
-/* ---------- 6) The click! ---------- */
+
+function playClickSound(){
+  if (!CLICK_SOUND) return;
+  const sound = new Audio(CLICK_SOUND);
+  sound.volume = 1;         
+  sound.play().catch(() => {});
+}
+
 btn.addEventListener("click", () => {
   const cx = btnX + btnWrap.offsetWidth / 2, cy = btnY + btnWrap.offsetHeight / 2;
+  playClickSound();
   burst(cx, cy);           
   replay(btn, "squash");
   replay(game, "shake");
@@ -163,7 +172,7 @@ function startSong() {
   NOTES.forEach(([f, b]) => {
     const o = ctx.createOscillator(), g = ctx.createGain();
     o.type = "triangle"; o.frequency.value = f;
-    g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(1, t + .02);
+    g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(.1, t + .02);
     g.gain.exponentialRampToValueAtTime(.001, t + b * beat);
     o.connect(g).connect(ctx.destination); o.start(t); o.stop(t + b * beat);
     t += b * beat;
